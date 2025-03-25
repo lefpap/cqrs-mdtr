@@ -5,9 +5,7 @@ import org.github.lefpap.mdtr.exception.HandlerNotFoundException;
 import org.github.lefpap.mdtr.handler.CommandHandler;
 import org.github.lefpap.mdtr.handler.QueryHandler;
 import org.github.lefpap.mdtr.message.Command;
-import org.github.lefpap.mdtr.message.CommandContext;
 import org.github.lefpap.mdtr.message.Query;
-import org.github.lefpap.mdtr.message.QueryContext;
 import org.github.lefpap.mdtr.registry.HandlerRegistry;
 
 /**
@@ -15,9 +13,6 @@ import org.github.lefpap.mdtr.registry.HandlerRegistry;
  * <p>
  * This mediator is responsible for dispatching commands and sending queries
  * to their respective handlers using a {@link HandlerRegistry}.
- * It supports both contextual and non-contextual handling. When a contextual
- * handler is not available for a given command or query, it falls back to the
- * non-contextual handler.
  * </p>
  *
  * @see CqrsMediator
@@ -45,16 +40,6 @@ public class DefaultCqrsMediator implements CqrsMediator {
         return handler.handle(command);
     }
 
-    @Override
-    public <R, C extends Command, CTX extends CommandContext<C>> R dispatch(C command, CTX ctx) {
-        // Prefer a contextual handler if registered.
-        return registry.<C, CTX, R>getContextualCommandHandler(command)
-            .map(handler -> handler.handle(command, ctx))
-            // Otherwise, fall back to the non-contextual handler.
-            .orElseGet(() -> registry.<C, R>getCommandHandler(command)
-                .orElseThrow(() -> new HandlerNotFoundException("No command handler registered for " + command.getClass()))
-                .handle(command));
-    }
 
     @Override
     public <R, Q extends Query> R send(Q query) {
@@ -64,14 +49,4 @@ public class DefaultCqrsMediator implements CqrsMediator {
         return handler.handle(query);
     }
 
-    @Override
-    public <R, Q extends Query, CTX extends QueryContext<Q>> R send(Q query, CTX ctx) {
-        // Prefer a contextual query handler if registered.
-        return registry.<Q, CTX, R>getContextualQueryHandler(query)
-            .map(handler -> handler.handle(query, ctx))
-            // Otherwise, fall back to the non-contextual handler.
-            .orElseGet(() -> registry.<Q, R>getQueryHandler(query)
-                .orElseThrow(() -> new HandlerNotFoundException("No query handler registered for " + query.getClass()))
-                .handle(query));
-    }
 }
