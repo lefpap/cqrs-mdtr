@@ -1,6 +1,6 @@
-package org.github.lefpap.sample;
+package com.github.lefpap.sample;
 
-import org.github.lefpap.mdtr.handler.CommandHandler;
+import com.github.lefpap.mdtr.handler.CommandHandler;
 
 public class TestCommandHandler implements CommandHandler<TestCommand, String> {
 

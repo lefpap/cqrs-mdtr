@@ -1,9 +1,9 @@
-package org.github.lefpap.mdtr.registry;
+package com.github.lefpap.mdtr.registry;
 
-import org.github.lefpap.mdtr.handler.CommandHandler;
-import org.github.lefpap.mdtr.handler.QueryHandler;
-import org.github.lefpap.mdtr.message.Command;
-import org.github.lefpap.mdtr.message.Query;
+import com.github.lefpap.mdtr.handler.CommandHandler;
+import com.github.lefpap.mdtr.handler.QueryHandler;
+import com.github.lefpap.mdtr.message.Command;
+import com.github.lefpap.mdtr.message.Query;
 
 import java.util.Optional;
 

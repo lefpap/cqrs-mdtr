@@ -21,7 +21,7 @@ Add this library as a dependency in your Maven project:
 
 ```xml
 <dependency>
-    <groupId>org.github.lefpap</groupId>
+    <groupId>com.github.lefpap</groupId>
     <artifactId>cqrs-mdtr</artifactId>
     <version>1.0-SNAPSHOT</version>
 </dependency>
