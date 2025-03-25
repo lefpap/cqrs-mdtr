@@ -1,12 +1,12 @@
-package org.github.lefpap.mdtr;
+package com.github.lefpap.mdtr;
 
 
-import org.github.lefpap.mdtr.exception.HandlerNotFoundException;
-import org.github.lefpap.mdtr.handler.CommandHandler;
-import org.github.lefpap.mdtr.handler.QueryHandler;
-import org.github.lefpap.mdtr.message.Command;
-import org.github.lefpap.mdtr.message.Query;
-import org.github.lefpap.mdtr.registry.HandlerRegistry;
+import com.github.lefpap.mdtr.exception.HandlerNotFoundException;
+import com.github.lefpap.mdtr.handler.CommandHandler;
+import com.github.lefpap.mdtr.handler.QueryHandler;
+import com.github.lefpap.mdtr.message.Command;
+import com.github.lefpap.mdtr.message.Query;
+import com.github.lefpap.mdtr.registry.HandlerRegistry;
 
 /**
  * Default implementation of the {@link CqrsMediator} interface.

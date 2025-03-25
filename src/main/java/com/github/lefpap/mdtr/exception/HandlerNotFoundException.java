@@ -1,4 +1,4 @@
-package org.github.lefpap.mdtr.exception;
+package com.github.lefpap.mdtr.exception;
 
 /**
  * Exception thrown when no handler is found for a given command or query.
