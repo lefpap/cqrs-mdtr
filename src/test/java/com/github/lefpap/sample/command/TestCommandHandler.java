@@ -1,11 +1,10 @@
-package com.github.lefpap.sample;
+package com.github.lefpap.sample.command;
 
 import com.github.lefpap.mdtr.handler.CommandHandler;
 
 public class TestCommandHandler implements CommandHandler<TestCommand, String> {
-
     @Override
     public String handle(TestCommand command) {
-        return "Handles command %s".formatted(TestCommand.class);
+        return "Command handled: %s".formatted(command.value());
     }
 }

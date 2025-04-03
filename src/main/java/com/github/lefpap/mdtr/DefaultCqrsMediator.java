@@ -33,9 +33,9 @@ public class DefaultCqrsMediator implements CqrsMediator {
 
     @Override
     public <R, C extends Command> R dispatch(C command) {
-        // Look up the non-contextual command handler.
+        // Look up the command handler.
         CommandHandler<C, R> handler = registry.<C, R>getCommandHandler(command)
-            .orElseThrow(() -> new HandlerNotFoundException("No non-contextual command handler registered for " + command.getClass()));
+            .orElseThrow(() -> new HandlerNotFoundException("No command handler registered for " + command.getClass()));
 
         return handler.handle(command);
     }
@@ -43,9 +43,9 @@ public class DefaultCqrsMediator implements CqrsMediator {
 
     @Override
     public <R, Q extends Query> R send(Q query) {
-        // Look up the non-contextual query handler.
+        // Look up the query handler.
         QueryHandler<Q, R> handler = registry.<Q, R>getQueryHandler(query)
-            .orElseThrow(() -> new HandlerNotFoundException("No non-contextual query handler registered for " + query.getClass()));
+            .orElseThrow(() -> new HandlerNotFoundException("No query handler registered for " + query.getClass()));
         return handler.handle(query);
     }
 
