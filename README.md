@@ -12,7 +12,6 @@ Key benefits:
 
 - Simplifies application design by clearly separating commands (state changes) from queries (data retrieval).
 - Decouples your business logic from infrastructure concerns.
-- Provides contextual and non-contextual handlers.
 - Facilitates better testability and maintainability.
 
 ## Installation
