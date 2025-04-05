@@ -131,20 +131,21 @@ configuration, or create your own:
 
 ```java
 @Configuration
-public class MediatorConfig {
+public class CqrsMediatorConfig {
 
     @Bean
+    @SuppressWarnings({"rawtypes", "unchecked"})
     public HandlerRegistry handlerRegistry(ApplicationContext context) {
         InMemoryHandlerRegistry registry = new InMemoryHandlerRegistry();
 
         context.getBeansWithAnnotation(HandlesCommand.class).forEach((name, handler) -> {
             HandlesCommand annotation = handler.getClass().getAnnotation(HandlesCommand.class);
-            registry.registerCommandHandler(annotation.value(), (CommandHandler<?, ?>) handler);
+            registry.registerCommandHandler((Class) annotation.value(), (CommandHandler) handler);
         });
 
         context.getBeansWithAnnotation(HandlesQuery.class).forEach((name, handler) -> {
             HandlesQuery annotation = handler.getClass().getAnnotation(HandlesQuery.class);
-            registry.registerQueryHandler(annotation.value(), (QueryHandler<?, ?>) handler);
+            registry.registerQueryHandler((Class) annotation.value(), (QueryHandler) handler);
         });
 
         return registry;
