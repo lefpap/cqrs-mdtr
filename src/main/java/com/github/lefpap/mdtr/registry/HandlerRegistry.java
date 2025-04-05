@@ -23,7 +23,7 @@ public interface HandlerRegistry {
      * @param commandType the class of the command to be handled
      * @param handler     the command handler that will process the command
      */
-    <C extends Command, R>
+    <C extends Command<R>, R>
     void registerCommandHandler(Class<C> commandType, CommandHandler<C, R> handler);
 
 
@@ -35,8 +35,28 @@ public interface HandlerRegistry {
      * @param queryType the class of the query to be handled
      * @param handler   the query handler that will process the query
      */
-    <Q extends Query, R>
+    <Q extends Query<R>, R>
     void registerQueryHandler(Class<Q> queryType, QueryHandler<Q, R> handler);
+
+    /**
+     * Unregisters a command handler for a specific command type.
+     *
+     * @param <C>         the type of command handled
+     * @param <R>         the type of result produced by the handler
+     * @param commandType the class of the command to be handled
+     */
+    <C extends Command<R>, R>
+    void unregisterCommandHandler(Class<C> commandType);
+
+    /**
+     * Unregisters a command handler for a specific command type.
+     *
+     * @param <Q>         the type of query handled
+     * @param <R>         the type of result produced by the handler
+     * @param queryType   the class of the query to be handled
+     */
+    <Q extends Query<R>, R>
+    void unregisterQueryHandler(Class<Q> queryType);
 
     // ---------------------- Lookup Methods ----------------------
 
@@ -48,7 +68,7 @@ public interface HandlerRegistry {
      * @param command the command for which a handler is sought
      * @return an {@link Optional} containing the matching command handler if one is registered, or an empty Optional otherwise
      */
-    <C extends Command, R> Optional<CommandHandler<C, R>> getCommandHandler(C command);
+    <C extends Command<R>, R> Optional<CommandHandler<C, R>> getCommandHandler(C command);
 
 
     /**
@@ -59,6 +79,6 @@ public interface HandlerRegistry {
      * @param query the query for which a handler is sought
      * @return an {@link Optional} containing the matching query handler if one is registered, or an empty Optional otherwise
      */
-    <Q extends Query, R> Optional<QueryHandler<Q, R>> getQueryHandler(Q query);
+    <Q extends Query<R>, R> Optional<QueryHandler<Q, R>> getQueryHandler(Q query);
 }
 

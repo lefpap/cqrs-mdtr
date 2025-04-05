@@ -10,7 +10,7 @@ import com.github.lefpap.mdtr.message.Query;
  * @param <Q> the type of query to be processed
  * @param <R> the type of result produced by handling the query
  */
-public interface QueryHandler<Q extends Query, R> {
+public interface QueryHandler<Q extends Query<R>, R> {
 
     /**
      * Handles the given query and returns a result.

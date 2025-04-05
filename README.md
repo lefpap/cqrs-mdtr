@@ -37,12 +37,12 @@ Define your business operations clearly using Command and Query interfaces:
 public record CreateUserCommand(
     String email,
     String password
-) implements Command {}
+) implements Command<UserCreatedResult> {}
 
 // A query example (represents a data retrieval operation)
 public record GetUserQuery(
     String userId
-) implements Query {}
+) implements Query<UserDto> {}
 ```
 
 ### Defining Command and Query Handlers

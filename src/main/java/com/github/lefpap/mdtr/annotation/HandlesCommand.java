@@ -21,5 +21,5 @@ public @interface HandlesCommand {
     /**
      * The Command class this handler is responsible for.
      */
-    Class<? extends Command> value();
+    @SuppressWarnings("rawtypes") Class<? extends Command> value();
 }
