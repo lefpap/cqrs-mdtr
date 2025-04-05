@@ -20,6 +20,7 @@ import com.github.lefpap.mdtr.registry.HandlerRegistry;
  * @see HandlerNotFoundException
  */
 public class DefaultCqrsMediator implements CqrsMediator {
+
     private final HandlerRegistry registry;
 
     /**
@@ -32,7 +33,7 @@ public class DefaultCqrsMediator implements CqrsMediator {
     }
 
     @Override
-    public <R, C extends Command> R dispatch(C command) {
+    public <R, C extends Command<R>> R dispatch(C command) {
         // Look up the command handler.
         CommandHandler<C, R> handler = registry.<C, R>getCommandHandler(command)
             .orElseThrow(() -> new HandlerNotFoundException("No command handler registered for " + command.getClass()));
@@ -42,7 +43,7 @@ public class DefaultCqrsMediator implements CqrsMediator {
 
 
     @Override
-    public <R, Q extends Query> R send(Q query) {
+    public <R, Q extends Query<R>> R send(Q query) {
         // Look up the query handler.
         QueryHandler<Q, R> handler = registry.<Q, R>getQueryHandler(query)
             .orElseThrow(() -> new HandlerNotFoundException("No query handler registered for " + query.getClass()));

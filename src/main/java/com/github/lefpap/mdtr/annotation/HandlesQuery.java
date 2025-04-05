@@ -23,5 +23,5 @@ public @interface HandlesQuery {
     /**
      * The Query class this handler is responsible for.
      */
-    Class<? extends Query> value();
+    @SuppressWarnings("rawtypes") Class<? extends Query> value();
 }

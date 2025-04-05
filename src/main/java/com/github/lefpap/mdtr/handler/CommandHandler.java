@@ -9,7 +9,7 @@ import com.github.lefpap.mdtr.message.Command;
  * @param <C> the type of command to be processed
  * @param <R> the type of result produced by handling the command
  */
-public interface CommandHandler<C extends Command, R> {
+public interface CommandHandler<C extends Command<R>, R> {
 
     /**
      * Handles the given command and returns a result.

@@ -19,7 +19,7 @@ public interface CqrsMediator {
      * @param command the command to dispatch
      * @return the result produced by processing the command
      */
-    <R, C extends Command> R dispatch(C command);
+    <R, C extends Command<R>> R dispatch(C command);
 
 
     /**
@@ -30,6 +30,6 @@ public interface CqrsMediator {
      * @param query the query to send
      * @return the result produced by processing the query
      */
-    <R, Q extends Query> R send(Q query);
+    <R, Q extends Query<R>> R send(Q query);
 }
 

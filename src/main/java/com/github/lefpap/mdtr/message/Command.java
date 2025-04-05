@@ -5,5 +5,7 @@ package com.github.lefpap.mdtr.message;
  * <p>
  * A command encapsulates a request to change the state of the system.
  * </p>
+ *
+ * @param <R> the type of result produced by handling the command
  */
-public interface Command {}
+public interface Command<R> {}

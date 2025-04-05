@@ -3,12 +3,10 @@ package com.github.lefpap.mdtr;
 import com.github.lefpap.mdtr.exception.HandlerNotFoundException;
 import com.github.lefpap.mdtr.registry.HandlerRegistry;
 import com.github.lefpap.mdtr.registry.InMemoryHandlerRegistry;
-import com.github.lefpap.sample.command.UnhandledCommand;
 import com.github.lefpap.sample.command.TestCommand;
 import com.github.lefpap.sample.command.TestCommandHandler;
 import com.github.lefpap.sample.query.TestQuery;
 import com.github.lefpap.sample.query.TestQueryHandler;
-import com.github.lefpap.sample.query.UnhandledQuery;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -19,10 +17,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class CqrsMediatorTest {
 
     private CqrsMediator mediator;
+    private HandlerRegistry handlerRegistry;
 
     @BeforeEach
     void setup() {
-        HandlerRegistry handlerRegistry = new InMemoryHandlerRegistry();
+        handlerRegistry = new InMemoryHandlerRegistry();
         handlerRegistry.registerCommandHandler(TestCommand.class, new TestCommandHandler());
         handlerRegistry.registerQueryHandler(TestQuery.class, new TestQueryHandler());
         mediator = new DefaultCqrsMediator(handlerRegistry);
@@ -42,7 +41,8 @@ class CqrsMediatorTest {
 
     @Test
     void testMissingCommandHandler_throwsException() {
-        UnhandledCommand command = new UnhandledCommand();
+        handlerRegistry.unregisterCommandHandler(TestCommand.class);
+        TestCommand command = new TestCommand("test");
         HandlerNotFoundException exception = assertThrows(HandlerNotFoundException.class, () -> {
             mediator.dispatch(command);
         });
@@ -52,7 +52,8 @@ class CqrsMediatorTest {
 
     @Test
     void testMissingQueryHandler_throwsException() {
-        UnhandledQuery query = new UnhandledQuery();
+        handlerRegistry.unregisterQueryHandler(TestQuery.class);
+        TestQuery query = new TestQuery("test");
         HandlerNotFoundException exception = assertThrows(HandlerNotFoundException.class, () -> {
             mediator.send(query);
         });
