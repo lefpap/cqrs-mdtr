@@ -2,7 +2,7 @@ package com.github.lefpap.mdtr.annotation;
 
 
 
-import com.github.lefpap.mdtr.message.Query;
+import com.github.lefpap.mdtr.query.Query;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

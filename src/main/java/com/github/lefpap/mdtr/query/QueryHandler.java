@@ -1,7 +1,4 @@
-package com.github.lefpap.mdtr.handler;
-
-
-import com.github.lefpap.mdtr.message.Query;
+package com.github.lefpap.mdtr.query;
 
 
 /**

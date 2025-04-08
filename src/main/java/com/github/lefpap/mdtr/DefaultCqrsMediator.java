@@ -2,10 +2,10 @@ package com.github.lefpap.mdtr;
 
 
 import com.github.lefpap.mdtr.exception.HandlerNotFoundException;
-import com.github.lefpap.mdtr.handler.CommandHandler;
-import com.github.lefpap.mdtr.handler.QueryHandler;
-import com.github.lefpap.mdtr.message.Command;
-import com.github.lefpap.mdtr.message.Query;
+import com.github.lefpap.mdtr.command.CommandHandler;
+import com.github.lefpap.mdtr.query.QueryHandler;
+import com.github.lefpap.mdtr.command.Command;
+import com.github.lefpap.mdtr.query.Query;
 import com.github.lefpap.mdtr.registry.HandlerRegistry;
 
 /**

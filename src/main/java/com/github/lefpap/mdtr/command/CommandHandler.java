@@ -1,7 +1,5 @@
-package com.github.lefpap.mdtr.handler;
+package com.github.lefpap.mdtr.command;
 
-
-import com.github.lefpap.mdtr.message.Command;
 
 /**
  * Handles a command by processing it and returning a result.

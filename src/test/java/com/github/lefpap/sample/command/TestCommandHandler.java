@@ -1,6 +1,6 @@
 package com.github.lefpap.sample.command;
 
-import com.github.lefpap.mdtr.handler.CommandHandler;
+import com.github.lefpap.mdtr.command.CommandHandler;
 
 public class TestCommandHandler implements CommandHandler<TestCommand, String> {
     @Override
