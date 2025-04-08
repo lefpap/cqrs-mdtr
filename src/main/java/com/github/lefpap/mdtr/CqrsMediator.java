@@ -1,8 +1,8 @@
 package com.github.lefpap.mdtr;
 
 
-import com.github.lefpap.mdtr.message.Command;
-import com.github.lefpap.mdtr.message.Query;
+import com.github.lefpap.mdtr.command.Command;
+import com.github.lefpap.mdtr.query.Query;
 
 /**
  * Defines a mediator for dispatching commands and sending queries within a CQRS architecture.

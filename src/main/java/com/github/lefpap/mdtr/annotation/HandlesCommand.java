@@ -1,7 +1,7 @@
 package com.github.lefpap.mdtr.annotation;
 
 
-import com.github.lefpap.mdtr.message.Command;
+import com.github.lefpap.mdtr.command.Command;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

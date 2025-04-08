@@ -1,6 +1,6 @@
 package com.github.lefpap.sample.query;
 
-import com.github.lefpap.mdtr.handler.QueryHandler;
+import com.github.lefpap.mdtr.query.QueryHandler;
 
 public class TestQueryHandler implements QueryHandler<TestQuery, String> {
     @Override

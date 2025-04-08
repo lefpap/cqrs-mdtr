@@ -1,4 +1,4 @@
-package com.github.lefpap.mdtr.message;
+package com.github.lefpap.mdtr.command;
 
 /**
  * Marker interface representing a command in the CQRS pattern.

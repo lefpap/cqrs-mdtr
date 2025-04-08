@@ -1,4 +1,4 @@
-package com.github.lefpap.mdtr.message;
+package com.github.lefpap.mdtr.query;
 
 /**
  * Marker interface representing a query in the CQRS pattern.
