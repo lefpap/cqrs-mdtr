@@ -17,4 +17,8 @@ public interface QueryHandler<Q extends Query<R>, R> {
     R handle(Q query);
 
     Class<Q> supportedQuery();
+
+    default boolean supportsQuery(Query<?> query) {
+        return supportedQuery().isInstance(query);
+    }
 }
