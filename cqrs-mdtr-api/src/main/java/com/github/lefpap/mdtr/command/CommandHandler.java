@@ -1,6 +1,5 @@
 package com.github.lefpap.mdtr.command;
 
-
 /**
  * Handles a command by processing it and returning a result.
  *
@@ -16,4 +15,6 @@ public interface CommandHandler<C extends Command<R>, R> {
      * @return the result of processing the command
      */
     R handle(C command);
+
+    Class<C> supportedCommand();
 }

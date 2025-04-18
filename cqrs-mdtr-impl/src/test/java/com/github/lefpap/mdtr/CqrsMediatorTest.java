@@ -1,5 +1,12 @@
 package com.github.lefpap.mdtr;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 import com.github.lefpap.mdtr.exception.HandlerNotFoundException;
 import com.github.lefpap.mdtr.registry.HandlerRegistry;
 import com.github.lefpap.mdtr.registry.InMemoryHandlerRegistry;
@@ -7,12 +14,6 @@ import com.github.lefpap.sample.command.TestCommand;
 import com.github.lefpap.sample.command.TestCommandHandler;
 import com.github.lefpap.sample.query.TestQuery;
 import com.github.lefpap.sample.query.TestQueryHandler;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class CqrsMediatorTest {
 
@@ -24,7 +25,7 @@ class CqrsMediatorTest {
         handlerRegistry = new InMemoryHandlerRegistry();
         handlerRegistry.registerCommandHandler(TestCommand.class, new TestCommandHandler());
         handlerRegistry.registerQueryHandler(TestQuery.class, new TestQueryHandler());
-        mediator = new DefaultCqrsMediator(handlerRegistry);
+        mediator = new BasicCqrsMediator(handlerRegistry);
     }
 
     @Test
