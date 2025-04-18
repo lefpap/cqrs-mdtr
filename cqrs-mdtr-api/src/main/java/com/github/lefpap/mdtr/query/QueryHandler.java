@@ -1,6 +1,5 @@
 package com.github.lefpap.mdtr.query;
 
-
 /**
  * Handles a query by processing it and returning a result.
  *
@@ -16,4 +15,6 @@ public interface QueryHandler<Q extends Query<R>, R> {
      * @return the result of processing the query
      */
     R handle(Q query);
+
+    Class<Q> supportedQuery();
 }

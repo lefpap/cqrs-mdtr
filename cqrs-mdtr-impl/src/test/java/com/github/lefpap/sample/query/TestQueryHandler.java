@@ -7,4 +7,9 @@ public class TestQueryHandler implements QueryHandler<TestQuery, String> {
     public String handle(TestQuery query) {
         return "Query handled: %s".formatted(query.value());
     }
+
+    @Override
+    public Class<TestQuery> supportedQuery() {
+        return TestQuery.class;
+    }
 }
