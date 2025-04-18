@@ -1,11 +1,11 @@
 package com.github.lefpap.mdtr;
 
-
 import com.github.lefpap.mdtr.command.Command;
 import com.github.lefpap.mdtr.query.Query;
 
 /**
- * Defines a mediator for dispatching commands and sending queries within a CQRS architecture.
+ * Defines a mediator for dispatching commands and sending queries within a CQRS
+ * architecture.
  *
  * @see Command
  * @see Query
@@ -21,7 +21,6 @@ public interface CqrsMediator {
      */
     <R, C extends Command<R>> R dispatch(C command);
 
-
     /**
      * Sends the specified query.
      *
@@ -32,4 +31,3 @@ public interface CqrsMediator {
      */
     <R, Q extends Query<R>> R send(Q query);
 }
-

@@ -23,9 +23,9 @@ class CqrsMediatorTest {
     @BeforeEach
     void setup() {
         handlerRegistry = new InMemoryHandlerRegistry();
-        handlerRegistry.registerCommandHandler(TestCommand.class, new TestCommandHandler());
-        handlerRegistry.registerQueryHandler(TestQuery.class, new TestQueryHandler());
-        mediator = new BasicCqrsMediator(handlerRegistry);
+        handlerRegistry.registerCommandHandler(new TestCommandHandler());
+        handlerRegistry.registerQueryHandler(new TestQueryHandler());
+        mediator = new DefaultCqrsMediator(handlerRegistry);
     }
 
     @Test

@@ -32,14 +32,14 @@ public class InMemoryHandlerRegistry implements HandlerRegistry {
 
     // Overloaded registration for non-contextual command handlers.
     @Override
-    public <C extends Command<R>, R> void registerCommandHandler(Class<C> commandType, CommandHandler<C, R> handler) {
-        commandHandlers.put(commandType, handler);
+    public <C extends Command<R>, R> void registerCommandHandler(CommandHandler<C, R> handler) {
+        commandHandlers.put(handler.supportedCommand(), handler);
     }
 
     // Overloaded registration for non-contextual query handlers.
     @Override
-    public <Q extends Query<R>, R> void registerQueryHandler(Class<Q> queryType, QueryHandler<Q, R> handler) {
-        queryHandlers.put(queryType, handler);
+    public <Q extends Query<R>, R> void registerQueryHandler(QueryHandler<Q, R> handler) {
+        queryHandlers.put(handler.supportedQuery(), handler);
     }
 
     @Override
@@ -53,17 +53,18 @@ public class InMemoryHandlerRegistry implements HandlerRegistry {
     }
 
     // Lookup for non-contextual command handlers.
-    @SuppressWarnings("unchecked")
     @Override
-    public <C extends Command<R>, R> Optional<CommandHandler<C, R>> getCommandHandler(C command) {
-        return Optional.ofNullable((CommandHandler<C, R>) commandHandlers.get(command.getClass()));
+    public <C extends Command<R>, R> Optional<CommandHandler<C, R>> getCommandHandler(Class<C> commandType) {
+        @SuppressWarnings("unchecked")
+        var commandHandler = (CommandHandler<C, R>) commandHandlers.get(commandType);
+        return Optional.ofNullable(commandHandler);
     }
 
     // Lookup for non-contextual query handlers.
-    @SuppressWarnings("unchecked")
     @Override
-    public <Q extends Query<R>, R> Optional<QueryHandler<Q, R>> getQueryHandler(Q query) {
-        return Optional.ofNullable((QueryHandler<Q, R>) queryHandlers.get(query.getClass()));
+    public <Q extends Query<R>, R> Optional<QueryHandler<Q, R>> getQueryHandler(Class<Q> queryType) {
+        @SuppressWarnings("unchecked")
+        var queryHandler = (QueryHandler<Q, R>) queryHandlers.get(queryType);
+        return Optional.ofNullable(queryHandler);
     }
-
 }
