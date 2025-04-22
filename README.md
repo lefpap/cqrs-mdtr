@@ -39,7 +39,7 @@ public record CreateUserCommand(
     String password
 ) implements Command<UserCreatedResult> {}
 
-// A query example (represents a data retrieval operation)
+// A cqrsQuery example (represents a data retrieval operation)
 public record GetUserQuery(
     String userId
 ) implements Query<UserDto> {}
@@ -47,7 +47,7 @@ public record GetUserQuery(
 
 ### Defining Command and Query Handlers
 
-Implement command/query handlers:
+Implement command/cqrsQuery handlers:
 
 ```java
 public class CreateUserCommandHandler implements CommandHandler<CreateUserCommand, UserCreatedResult> {
@@ -62,7 +62,7 @@ public class CreateUserCommandHandler implements CommandHandler<CreateUserComman
 public class GetUserQueryHandler implements QueryHandler<GetUserQuery, UserDto> {
 
     @Override
-    public UserDto handle(GetUserQuery query) {
+    public UserDto handle(GetUserQuery cqrsQuery) {
         // retrieve data here
         return new UserDto(/* result data */);
     }
@@ -93,14 +93,14 @@ Use the mediator to dispatch commands and send queries:
 CreateUserCommand command = new CreateUserCommand("john@example.com", "john123");
 UserCreatedResult result = mediator.dispatch(command);
 
-// Send query
-GetUserQuery query = new GetUserQuery("user-123");
-UserDto user = mediator.send(query);
+// Send cqrsQuery
+GetUserQuery cqrsQuery = new GetUserQuery("user-123");
+UserDto user = mediator.send(cqrsQuery);
 ```
 
 ## Integrating with Spring Boot
 
-Implement command/query handlers using the provided annotations:
+Implement command/cqrsQuery handlers using the provided annotations:
 
 ```java
 @Component
@@ -119,7 +119,7 @@ public class CreateUserCommandHandler implements CommandHandler<CreateUserComman
 public class GetUserQueryHandler implements QueryHandler<GetUserQuery, UserDto> {
 
     @Override
-    public UserDto handle(GetUserQuery query) {
+    public UserDto handle(GetUserQuery cqrsQuery) {
         // retrieve data here
         return new UserDto(/* result data */);
     }

@@ -1,14 +1,14 @@
 package io.github.lefpap.mdtr;
 
-import io.github.lefpap.mdtr.command.Command;
-import io.github.lefpap.mdtr.query.Query;
+import io.github.lefpap.mdtr.request.CqrsCommand;
+import io.github.lefpap.mdtr.request.CqrsQuery;
 
 /**
  * Defines a mediator for dispatching commands and sending queries within a CQRS
  * architecture.
  *
- * @see Command
- * @see Query
+ * @see CqrsCommand
+ * @see CqrsQuery
  */
 public interface CqrsMediator {
     /**
@@ -19,7 +19,7 @@ public interface CqrsMediator {
      * @param command the command to dispatch
      * @return the result produced by processing the command
      */
-    <R, C extends Command<R>> R dispatch(C command);
+    <R, C extends CqrsCommand<R>> R dispatch(C command);
 
     /**
      * Sends the specified query.
@@ -29,5 +29,5 @@ public interface CqrsMediator {
      * @param query the query to send
      * @return the result produced by processing the query
      */
-    <R, Q extends Query<R>> R send(Q query);
+    <R, Q extends CqrsQuery<R>> R send(Q query);
 }

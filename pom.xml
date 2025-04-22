@@ -16,26 +16,49 @@
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <cqrs-mdtr.version>1.0-SNAPSHOT</cqrs-mdtr.version>
+        <spring-boot.version>3.4.4</spring-boot.version>
+        <slf4j.version>2.0.17</slf4j.version>
+        <junit-jupiter.version>5.12.1</junit-jupiter.version>
     </properties>
 
     <modules>
         <module>cqrs-mdtr-api</module>
-        <module>cqrs-mdtr-impl</module>
+        <module>cqrs-mdtr-spring-boot-starter</module>
     </modules>
 
     <dependencyManagement>
         <dependencies>
             <dependency>
+                <groupId>io.github.lefpap</groupId>
+                <artifactId>cqrs-mdtr-api</artifactId>
+                <version>${cqrs-mdtr.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-autoconfigure</artifactId>
+                <version>${spring-boot.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>${slf4j.version}</version>
+            </dependency>
+
+            <dependency>
                 <groupId>org.junit.jupiter</groupId>
                 <artifactId>junit-jupiter-engine</artifactId>
-                <version>5.12.1</version>
+                <version>${junit-jupiter.version}</version>
                 <scope>test</scope>
             </dependency>
 
             <dependency>
                 <groupId>org.junit.jupiter</groupId>
                 <artifactId>junit-jupiter</artifactId>
-                <version>5.12.1</version>
+                <version>${junit-jupiter.version}</version>
                 <scope>test</scope>
             </dependency>
         </dependencies>
