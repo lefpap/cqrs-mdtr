@@ -1,9 +1,12 @@
 package io.github.lefpap.mdtr;
 
 import io.github.lefpap.mdtr.exception.CqrsRequestHandlerNotFoundException;
+import io.github.lefpap.mdtr.pipeline.CqrsRequestPipeline;
 import io.github.lefpap.mdtr.request.CqrsCommand;
 import io.github.lefpap.mdtr.request.CqrsQuery;
 import io.github.lefpap.mdtr.registry.CqrsHandlerRegistry;
+
+import java.util.Optional;
 
 /**
  * Default implementation of the {@link CqrsMediator} interface.
@@ -14,6 +17,17 @@ import io.github.lefpap.mdtr.registry.CqrsHandlerRegistry;
 public class DefaultCqrsMediator implements CqrsMediator {
 
     private final CqrsHandlerRegistry registry;
+    private final CqrsRequestPipeline pipeline;
+
+    /**
+     * Constructs a new {@code DefaultCqrsMediator} with the specified handler registry.
+     *
+     * @param registry the registry containing command and query handlers
+     */
+    public DefaultCqrsMediator(CqrsHandlerRegistry registry, CqrsRequestPipeline pipeline) {
+        this.registry = registry;
+        this.pipeline = pipeline;
+    }
 
     /**
      * Constructs a new {@code DefaultCqrsMediator} with the specified handler registry.
@@ -22,6 +36,7 @@ public class DefaultCqrsMediator implements CqrsMediator {
      */
     public DefaultCqrsMediator(CqrsHandlerRegistry registry) {
         this.registry = registry;
+        this.pipeline = null;
     }
 
     /**
@@ -30,9 +45,12 @@ public class DefaultCqrsMediator implements CqrsMediator {
     @Override
     public <R, C extends CqrsCommand<R>> R dispatch(C command) {
         //noinspection unchecked
-        return registry.getCommandHandler((Class<C>) command.getClass())
-                .map(handler -> handler.handle(command))
+        var handler = registry.getCommandHandler((Class<C>) command.getClass())
                 .orElseThrow(() -> new CqrsRequestHandlerNotFoundException("No handler found for command: " + command.getClass().getName()));
+
+        return Optional.ofNullable(pipeline)
+                .map(p -> p.execute(command, handler))
+                .orElseGet(() -> handler.handle(command));
     }
 
     /**
@@ -41,8 +59,11 @@ public class DefaultCqrsMediator implements CqrsMediator {
     @Override
     public <R, Q extends CqrsQuery<R>> R send(Q query) {
         //noinspection unchecked
-        return registry.getQueryHandler((Class<Q>) query.getClass())
-                .map(handler -> handler.handle(query))
+        var handler = registry.getQueryHandler((Class<Q>) query.getClass())
                 .orElseThrow(() -> new CqrsRequestHandlerNotFoundException("No handler found for query: " + query.getClass().getName()));
+
+        return Optional.ofNullable(pipeline)
+                .map(p -> p.execute(query, handler))
+                .orElseGet(() -> handler.handle(query));
     }
 }

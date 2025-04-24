@@ -9,5 +9,5 @@ package io.github.lefpap.mdtr.request;
  *
  * @param <R> the type of result produced by handling the query
  */
-public interface CqrsQuery<R> {
+public interface CqrsQuery<R> extends CqrsRequest<R> {
 }
