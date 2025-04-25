@@ -24,7 +24,7 @@
     </properties>
 
     <modules>
-        <module>cqrs-mdtr-api</module>
+        <module>cqrs-mdtr-core</module>
         <module>cqrs-mdtr-spring-boot-starter</module>
     </modules>
 
@@ -32,7 +32,7 @@
         <dependencies>
             <dependency>
                 <groupId>io.github.lefpap</groupId>
-                <artifactId>cqrs-mdtr-api</artifactId>
+                <artifactId>cqrs-mdtr-core</artifactId>
                 <version>${cqrs-mdtr.version}</version>
             </dependency>
 

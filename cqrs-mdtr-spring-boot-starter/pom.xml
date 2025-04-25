@@ -12,6 +12,11 @@
     <artifactId>cqrs-mdtr-spring-boot-starter</artifactId>
     <packaging>jar</packaging>
 
+    <name>CQRS Mediator Spring Boot starter</name>
+    <description>
+        Spring Boot starter autoconfiguration for CQRS Mediator.
+    </description>
+
     <properties>
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
@@ -22,7 +27,7 @@
     <dependencies>
         <dependency>
             <groupId>io.github.lefpap</groupId>
-            <artifactId>cqrs-mdtr-api</artifactId>
+            <artifactId>cqrs-mdtr-core</artifactId>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>

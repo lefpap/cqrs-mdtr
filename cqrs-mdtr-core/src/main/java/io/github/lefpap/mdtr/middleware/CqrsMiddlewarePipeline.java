@@ -1,4 +1,4 @@
-package io.github.lefpap.mdtr.pipeline;
+package io.github.lefpap.mdtr.middleware;
 
 import io.github.lefpap.mdtr.handler.CqrsRequestHandler;
 import io.github.lefpap.mdtr.request.CqrsRequest;
@@ -7,7 +7,8 @@ import io.github.lefpap.mdtr.request.CqrsRequest;
  * Defines a pipeline for executing requests.
  * This interface allows for the execution of requests using a specified handler.
  */
-public interface CqrsRequestPipeline {
+@FunctionalInterface
+public interface CqrsMiddlewarePipeline {
 
     /**
      * Executes a request using the provided handler.

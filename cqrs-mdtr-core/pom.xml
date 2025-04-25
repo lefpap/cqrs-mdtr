@@ -9,11 +9,11 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>cqrs-mdtr-api</artifactId>
+    <artifactId>cqrs-mdtr-core</artifactId>
     <packaging>jar</packaging>
 
-    <name>CQRS Mediator API</name>
-    <description>Interfaces and types for CQRS Mediator.</description>
+    <name>CQRS Mediator core</name>
+    <description>Core types and logic for CQRS Mediator.</description>
 
     <properties>
         <maven.compiler.source>21</maven.compiler.source>
