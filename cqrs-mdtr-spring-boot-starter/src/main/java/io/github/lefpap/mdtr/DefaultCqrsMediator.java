@@ -1,7 +1,7 @@
 package io.github.lefpap.mdtr;
 
 import io.github.lefpap.mdtr.exception.CqrsRequestHandlerNotFoundException;
-import io.github.lefpap.mdtr.pipeline.CqrsRequestPipeline;
+import io.github.lefpap.mdtr.middleware.CqrsMiddlewarePipeline;
 import io.github.lefpap.mdtr.request.CqrsCommand;
 import io.github.lefpap.mdtr.request.CqrsQuery;
 import io.github.lefpap.mdtr.registry.CqrsHandlerRegistry;
@@ -17,14 +17,14 @@ import java.util.Optional;
 public class DefaultCqrsMediator implements CqrsMediator {
 
     private final CqrsHandlerRegistry registry;
-    private final CqrsRequestPipeline pipeline;
+    private final CqrsMiddlewarePipeline pipeline;
 
     /**
      * Constructs a new {@code DefaultCqrsMediator} with the specified handler registry.
      *
      * @param registry the registry containing command and query handlers
      */
-    public DefaultCqrsMediator(CqrsHandlerRegistry registry, CqrsRequestPipeline pipeline) {
+    public DefaultCqrsMediator(CqrsHandlerRegistry registry, CqrsMiddlewarePipeline pipeline) {
         this.registry = registry;
         this.pipeline = pipeline;
     }
